@@ -5,3 +5,4 @@ statsmodels
 yahoo_fin
 requests_html
 yfinance
+t
