@@ -1,7 +1,7 @@
 # Causal Impact of the 2025 F5 Networks Cybersecurity Breach  
 ### Difference-in-Differences Analysis of Stock Market Reaction
 
-This project analyzes the financial impact of the **October 2025 cyber breach at F5 Networks (FFIV)** using **causal inference techniques** — specifically a **Difference-in-Differences (DiD)** model and a **Difference-in-Trends** robustness test.
+This project analyzes the causal impact of the **October 2025 cyber breach at F5 Networks (FFIV)** using **causal inference techniques** — specifically a **Difference-in-Differences (DiD)** model and a **Difference-in-Trends** robustness test.
 
 Because real stock markets cannot be A/B tested, DiD provides a credible way to estimate what portion of the price impact was caused by the breach itself.
 
