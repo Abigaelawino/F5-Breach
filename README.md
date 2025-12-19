@@ -53,10 +53,7 @@ Where:
 
 ### 3. Validity Checks  
 To ensure a credible estimate:
-
-- ✔ **Parallel Trends Check**
-- ✔ **Placebo Test (fake event date)**
-- ✔ **Difference-in-Trends robustness model**
+**Parallel Trends Check**, **Placebo Test (fake event date)**, **Difference-in-Trends robustness model**
 
 ---
 
