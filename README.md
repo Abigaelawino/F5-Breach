@@ -7,15 +7,6 @@ Because real stock markets cannot be A/B tested, DiD provides a credible way to 
 
 ---
 
-## Project Goal
-Estimate how the public breach announcement affected **F5 Networks’ daily stock returns**, compared to:
-
-- Industry competitors  
-- Broader market benchmarks  
-
-The focus is on identifying **causal impact**, not just correlation.
-
----
 ## Slide 1 – Overview
 
 ![Slide 1](2025_f5_cybersecurity_breach/Slide1.PNG)
