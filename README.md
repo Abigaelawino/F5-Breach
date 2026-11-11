@@ -19,19 +19,19 @@ Because real stock markets cannot be A/B tested, DiD provides a credible way to 
 
 ---
 
-## Slide 3 – The Data 
+## Slide 3 – The Data
 
 ![Slide 3](2025_f5_cybersecurity_breach/Slide3.PNG)
 
 ---
 
-## Slide 4 – Parallel Trend Assumption 
+## Slide 4 – Parallel Trend Assumption
 
 ![Slide 4](2025_f5_cybersecurity_breach/Slide4.PNG)
 
 ---
 
-## Slide 5 – Difference-in-differences analysis results 
+## Slide 5 – Difference-in-differences analysis results
 
 
 ![Slide 5](2025_f5_cybersecurity_breach/Slide5.PNG)
@@ -45,7 +45,7 @@ Because real stock markets cannot be A/B tested, DiD provides a credible way to 
 
 ---
 
-## Slide 7 – Final Conclusion 
+## Slide 7 – Final Conclusion
 
 ![Slide 7](2025_f5_cybersecurity_breach/Slide7.PNG)
 
@@ -74,7 +74,6 @@ All stock data comes from **Yahoo Finance** pulled using the `yfinance` API.
 ## Methodology
 
 ### 1. Compute Daily Returns  
-
 returns ~ treated + post + treated_post
 Where:
 
@@ -83,26 +82,32 @@ Where:
 - **treated_post = treated × post**  
 - The coefficient on `treated_post` is the **causal effect**  
 
+Post window: **30 days** after the event for the headline estimate, with a 90-day window as a fade check. Pre window: 180 days before the event.
+
 ### 3. Validity Checks  
 To ensure a credible estimate:
-**Parallel Trends Check**, **Placebo Test (fake event date)**, **Difference-in-Trends robustness model**
+**Parallel Trends Check**, **Placebo Test (fake event Sep 16, 2025 — a month earlier, so its window ends before the real event)**, **Difference-in-Trends robustness model**
 
 ---
 
 ## Key Findings
 
+### Correction (Nov 2025)
+The first version of this analysis filtered the data to `date <= event_date`, so the "post" period was only the event day itself and the headline coefficient (-0.0951) was a one-day event comparison, not a sustained effect. The model was re-run with a real 30-day post window. The results below are the corrected ones.
+
 ### Main Result  
-The DiD estimate shows a **~9.5% additional drop** in F5’s daily returns after the breach:
-treated_post = -0.0951 (p < 0.001)
+On the announcement day (Oct 16, 2025), F5 fell **10.7%**, while peers fell 0.6–2.8% (Akamai -1.0%, Cisco -0.6%, Cloudflare -2.8%, S&P 500 -0.7%).
 
-This means:
+Over the **30 days after the breach**, F5 underperformed its peers by **1.8 percentage points per day on average**:
+treated_post = -0.0176 (p < 0.001)
 
-F5 underperformed competitors by **about 9–10% due to the breach**, beyond normal market movement.
+Over longer windows the effect faded: 60-day treated_post = -0.0063 (p = 0.067), 90-day = -0.0053 (p = 0.085), full window to Dec 12 = -0.0066 (p = 0.057) — none significant. The market punished F5 hard for about a month, then moved on.
 
 ### Additional observations
 - `treated` not significant → FFIV behaved similarly to peers before the event  
-- `post` slightly negative → market dipped modestly overall  
-- Placebo effect = no significance → supports causal validity  
+- `post` not significant over the 30-day window → no broad market dip after the event  
+- Placebo test (fake Sep 16 event): no significance (p = 0.67) → supports causal validity  
+- Parallel trends check: no evidence trends differed before the event (p = 0.38)  
 
 ---
 
@@ -123,7 +128,7 @@ F5 underperformed competitors by **about 9–10% due to the breach**, beyond nor
 - `get_prices()`  
 
 ### Models  
-- `run_diff_in_diff()`  
+- `run_diff_in_diff()` — now takes a `post_days` argument (default 30)  
 - `difference_in_trends()`  
 - Placebo test  
 
